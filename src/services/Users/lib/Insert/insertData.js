@@ -4,18 +4,18 @@ import neo4j from '../../../../config/database/neo4j'
 import errorTypes from '../../errors/errorTypes'
 /**
  * 
- * User uniq const para usuário email, _id, slug
+ * User uniq const para usuário email, user_id, slug
  * https://neo4j.com/docs/cypher-manual/current/schema/constraints/#query-constraint-unique-nodes 
  */
 
 export default (user) => {
 	return new Promise((resolve, reject) => {
 
-        user._id   	  = uuid.v1()
+        user.user_id  = uuid.v1()
         user.language = 'pt-br'
 
-		let cypher  = 'MATCH (indicator:User) WHERE indicator._id = {indicated_by} WITH indicator '
-			cypher += 'CREATE (user:User { _id: {_id},'
+		let cypher  = 'MATCH (indicator:User) WHERE indicator.user_id = {indicated_by} WITH indicator '
+			cypher += 'CREATE (user:User { user_id: {user_id}, '
 			cypher +=					  'name: {name}, '
 			cypher +=					  'email: {email}, '
 			cypher += 					  'password: {password}, '

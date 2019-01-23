@@ -34,7 +34,7 @@ export default (passport) => {
 		secretOrKey: process.env.APP_SECRET,
 	}, (payload, done) => {
 			if (!payload) return done(null, false)
-			const user = { _id: payload._id }
+			const user = { user_id: payload.user_id }
 			done(null, user)
 		}
 	))
