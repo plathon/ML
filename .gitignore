@@ -1,0 +1,26 @@
+lib-cov
+*.seed
+*.log
+*.csv
+*.dat
+*.out
+*.pid
+*.gz
+
+pids
+logs
+results
+_dev
+bower_components
+
+migrate.json
+npm-debug.log
+node_modules
+dist
+server_old
+public
+
+# OS generated stuff
+.DS_Store
+.DS_Store?
+.env
