@@ -58,7 +58,7 @@ app.use((err, req, res, next) => {
 		.status(500)
 		.send('Could not process your request. Please try again later.')
 	} else {
-		res.status(err.status).send(err.msg)
+		res.status(err.status || 500).send(err.msg || 'error')
 	}
 })
 

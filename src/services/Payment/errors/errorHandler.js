@@ -8,6 +8,11 @@ function errorHandler (err) {
 			return
 		}
 
+		if (err.name == 'PAYMENT_ERROR') {
+			reject({ status: err.status, msg: 'Não foi possivel concluir pagamento.' })
+			return
+		}
+
 		reject(err)
 	})
 }

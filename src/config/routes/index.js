@@ -12,6 +12,8 @@ import ReadUser from '../../services/Users/routes/read'
 import ResetPassword from '../../services/Password/routes/reset'
 import UpdatePassword from '../../services/Password/routes/update'
 
+import insertPayment from '../../services/Payment/routes/insert'
+
 export default () => {
 
 	let routes = Router()
@@ -27,6 +29,8 @@ export default () => {
 
 	routes.post('/password/reset', ResetPassword)
 	routes.post('/password/update', UpdatePassword)
+
+	routes.post('/payment', passport.authenticate('jwt', { session: false }), insertPayment)
 
 	return routes
 
