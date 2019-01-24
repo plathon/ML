@@ -9,7 +9,8 @@ export default (payment) => {
 		const paymentStatuaEnum = {
 			pending: 1,
 			received: 2,
-			canceled: 3
+			canceled: 3,
+			reinvested: 4
 		}
 
 		payment.payment_id  = uuid.v1()

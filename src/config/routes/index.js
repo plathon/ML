@@ -13,6 +13,7 @@ import UpdatePassword from '../../services/Password/routes/update'
 
 import insertPayment from '../../services/Payment/routes/insert'
 import listPayments from '../../services/Payment/routes/list'
+import updatePayment from '../../services/Payment/routes/update'
 
 import listNetwork from '../../services/network/routes/list'
 
@@ -34,6 +35,7 @@ export default () => {
 
 	routes.post('/payment', passport.authenticate('jwt', { session: false }), insertPayment)
 	routes.get('/payments', passport.authenticate('jwt', { session: false }), listPayments)
+	routes.put('/payment', passport.authenticate('jwt', { session: false }), updatePayment)
 
 	routes.get('/network', passport.authenticate('jwt', { session: false }), listNetwork)
 
