@@ -1,7 +1,6 @@
 import { Router } from 'express'
 import passport from '../passport'
 
-
 import authenticateUserLocal from '../../services/Authentication/routes/local'
 //import authenticateUserFacebook from '../../services/Authentication/routes/authenticateUserFacebook'
 

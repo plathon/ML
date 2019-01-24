@@ -3,16 +3,16 @@ import Joi from 'joi'
 
 import errorTypes from '../../errors/errorTypes'
 
-export default (user) => {
+export default (payments) => {
 	return new Promise((resolve, reject) => {
 
-		Joi.validate(user, Schema, (err, res) => {
+		Joi.validate(payments, Schema, (err, res) => {
 			if (err) {
 				const error = { name: 'DATA_VALIDATION_ERROR', status: 400 }
 				reject(new errorTypes(error))
 			}
 
-			return resolve(user)
+			return resolve(payments)
 		})
 
 	})

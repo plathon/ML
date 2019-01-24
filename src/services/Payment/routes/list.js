@@ -1,5 +1,6 @@
-import validate 	  	from '../lib/list/validate'
-import listData 	  	from '../lib/list/listData'
+import validate 	  		 from '../lib/list/validate'
+import listData 	  		 from '../lib/list/listData'
+import setProfitabilitySettings from '../lib/list/setProfitabilitySettings'
 
 import errorHandler from '../errors/errorHandler'
 
@@ -9,13 +10,8 @@ export default (req, res, next) => {
 
 	validate(payments)
 	.then(listData)
-	.then(payments => {
-
-		res.send(payments)
-
-	})
+	.then(setProfitabilitySettings)
+	.then(payments => res.send(payments))
 	.catch(errorHandler)
-	.catch( err => {
-		next(err)
-	})
+	.catch( err => next(err))
 }
