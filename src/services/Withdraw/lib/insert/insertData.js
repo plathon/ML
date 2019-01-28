@@ -1,5 +1,4 @@
 import Promise from 'bluebird'
-import uuid    from 'node-uuid'
 import neo4j from '../../../../config/database/neo4j'
 import errorTypes from '../../errors/errorTypes'
 
@@ -14,15 +13,12 @@ export default (payment) => {
 			withdrawal_pending: 5,
 			withdrawal_completed: 6
 		}
-		
-		payment.payment_id  = uuid.v1()
-		payment.status      = paymentStatuaEnum.pending
 
-		let cypher  = 'MATCH (user:User) WHERE user.user_id = {user_id} WITH user '
-            cypher += 'CREATE (user)-[:PAY]->(payment:Payment { payment_id: {payment_id}, '
-			cypher +=                                  'amount: {amount}, '
-			cypher += 					  			   'status: {status}, '
-			cypher += 					  			   'created_at: datetime() })'
+		payment.status      = paymentStatuaEnum.withdrawal_pending
+
+        let cypher  = 'MATCH (user:User)-[:PAY]->(payment:Payment) '
+            cypher += 'WHERE user.user_id = {user_id} AND payment.payment_id = {payment_id} '
+            cypher += 'SET payment.status = {status}'
 			cypher += 'RETURN payment'
 
 		neo4j.query(cypher, payment, (err, res) => {
@@ -37,7 +33,7 @@ export default (payment) => {
 				return
 			}
 
-			resolve(payment)
+			resolve(res[0])
 
 		})
 

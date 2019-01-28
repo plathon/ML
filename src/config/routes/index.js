@@ -17,6 +17,8 @@ import updatePayment from '../../services/Payment/routes/update'
 
 import listNetwork from '../../services/network/routes/list'
 
+import insertWithdraw from '../../services/withdraw/routes/insert'
+
 export default () => {
 
 	let routes = Router()
@@ -38,6 +40,8 @@ export default () => {
 	routes.put('/payment', passport.authenticate('jwt', { session: false }), updatePayment)
 
 	routes.get('/network', passport.authenticate('jwt', { session: false }), listNetwork)
+
+	routes.post('/withdraw', passport.authenticate('jwt', { session: false }), insertWithdraw)
 
 	return routes
 
